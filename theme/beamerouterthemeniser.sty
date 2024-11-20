@@ -137,6 +137,22 @@
       progressbar=none}
     }{}{}
 }
+
+%wrap backupslides in
+%\appendix
+%\backupbegin
+%. . . . . . .
+%\backupend to make number 24/23 25/23..
+%for the backupslides it will just show total number of slides upto final slide
+%before the backup happens
+\newcommand{\backupbegin}{
+   \newcounter{finalframe}
+   \setcounter{finalframe}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \setcounter{framenumber}{\value{finalframe}}
+}
+
 \niser@outer@setdefaults
 \ProcessPgfPackageOptions{/niser/outer}
 \endinput
