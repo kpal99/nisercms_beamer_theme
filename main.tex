@@ -2,22 +2,23 @@
 \makeatletter
 \def\input@path{{theme}}
 \makeatother
-\usetheme[numbering=fraction, progressbar=frametitle]{niser}           % Use niser theme
+% using niser theme
+\usetheme[numbering=fraction, progressbar=frametitle]{niser}
 %%% theme options are
 % numbering: none, counter, fraction
 % progressbar: none, head, frametitle, foot
-%
+%%%
 \usepackage{datetime}
 
-\title{A minimal example}
+% Content within [] will be shown in the footline of each frame
+\title[Minimal Example]{A minimal example}
 \newdate{date}{01}{01}{2025} % set custom date
 \date{\displaydate{date}}
-\author{Kuldeep Kumar Pal}
+\author[\href{https://github.com/kpal99}{K Pal}]{\href{https://github.com/kpal99}{Kuldeep Kumar Pal}}
 \institute{National Institute of Science Education and Research, An OCC of Homi Bhabha National Institute, Jatni, India}
 
 \begin{document}
   \maketitle
-
   \section{First Section}
   \begin{frame}{First Frame}
     Hello, world!
