@@ -1,0 +1,107 @@
+%%
+%% This is file `beamerthemeniser.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamerthemeniser.dtx  (with options: `package')
+%% ---------------------------------------------------------------------------
+%% Copyright 2015 Matthias Vogelgesang and the LaTeX community. A full list of
+%% contributors can be found at
+%% 
+%%     https://github.com/matze/mtheme/graphs/contributors
+%% 
+%% and the original template was based on the HSRM theme by Benjamin Weiss.
+%% 
+%% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+%% International License (https://creativecommons.org/licenses/by-sa/4.0/).
+%% ---------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeniser}
+  [2017/01/23 v1.2 Metropolis Beamer theme]
+\RequirePackage{etoolbox}
+\RequirePackage{pgfopts}
+\pgfkeys{/niser/.cd,
+  .search also={
+    /niser/inner,
+    /niser/outer,
+    /niser/color,
+    /niser/font,
+  }
+}
+\pgfkeys{
+  /niser/titleformat plain/.cd,
+    .is choice,
+    regular/.code={%
+      \let\niser@plaintitleformat\@empty%
+      \setbeamerfont{standout}{shape=\normalfont}%
+    },
+    smallcaps/.code={%
+      \let\niser@plaintitleformat\@empty%
+      \setbeamerfont{standout}{shape=\scshape}%
+    },
+    allsmallcaps/.code={%
+      \let\niser@plaintitleformat\MakeLowercase%
+      \setbeamerfont{standout}{shape=\scshape}%
+      \PackageWarning{beamerthemeniser}{%
+        Be aware that titleformat plain=allsmallcaps can lead to problems%
+      }
+    },
+    allcaps/.code={%
+      \let\niser@plaintitleformat\MakeUppercase%
+      \setbeamerfont{standout}{shape=\normalfont}%
+      \PackageWarning{beamerthemeniser}{%
+        Be aware that titleformat plain=allcaps can lead to problems%
+      }
+    },
+}
+\pgfkeys{
+  /niser/titleformat/.code=\pgfkeysalso{
+      font/titleformat title=#1,
+      font/titleformat subtitle=#1,
+      font/titleformat section=#1,
+      font/titleformat frame=#1,
+      titleformat plain=#1,
+    }
+}
+\pgfkeys{/niser/.cd,
+  usetitleprogressbar/.code=\pgfkeysalso{outer/progressbar=frametitle},
+  noslidenumbers/.code=\pgfkeysalso{outer/numbering=none},
+  usetotalslideindicator/.code=\pgfkeysalso{outer/numbering=fraction},
+  nosectionslide/.code=\pgfkeysalso{inner/sectionpage=none},
+  darkcolors/.code=\pgfkeysalso{color/background=dark},
+  blockbg/.code=\pgfkeysalso{color/block=fill, inner/block=fill},
+}
+\newcommand{\niser@setdefaults}{
+  \pgfkeys{/niser/.cd,
+    titleformat plain=regular,
+  }
+}
+\providecommand{\tikzexternalenable}{}
+\providecommand{\tikzexternaldisable}{}
+\useinnertheme{niser}
+\useoutertheme{niser}
+\usecolortheme{niser}
+\usefonttheme{niser}
+\AtEndPreamble{%
+  \@ifpackageloaded{pgfplots}{%
+    \RequirePackage{pgfplotsthemetol}
+  }{}
+}
+\newcommand{\metroset}[1]{\pgfkeys{/niser/.cd,#1}}
+\def\niser@plaintitleformat#1{#1}
+\newcommand{\plain}[2][]{%
+  \PackageWarning{beamerthemeniser}{%
+    The syntax `\plain' may be deprecated in a future version of Metropolis.
+    Please use a frame with [standout] instead.
+  }
+  \begin{frame}[standout]{#1}
+    \niser@plaintitleformat{#2}
+  \end{frame}
+}
+\newcommand{\mreducelistspacing}{\vspace{-\topsep}}
+\niser@setdefaults
+\ProcessPgfOptions{/niser}
+\endinput
+%%
+%% End of file `beamerthemeniser.sty'.

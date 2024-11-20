@@ -1,0 +1,137 @@
+%%
+%% This is file `beamerouterthemeniser.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% beamerouterthemeniser.dtx  (with options: `package')
+%% ---------------------------------------------------------------------------
+%% Copyright 2015 Matthias Vogelgesang and the LaTeX community. A full list of
+%% contributors can be found at
+%% 
+%%     https://github.com/matze/mtheme/graphs/contributors
+%% 
+%% and the original template was based on the HSRM theme by Benjamin Weiss.
+%% 
+%% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+%% International License (https://creativecommons.org/licenses/by-sa/4.0/).
+%% ---------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerouterthemeniser}[2017/01/23 Metropolis outer theme]
+\RequirePackage{etoolbox}
+\RequirePackage{calc}
+\RequirePackage{pgfopts}
+\pgfkeys{
+  /niser/outer/numbering/.cd,
+    .is choice,
+    none/.code=\setbeamertemplate{frame numbering}[none],
+    counter/.code=\setbeamertemplate{frame numbering}[counter],
+    fraction/.code=\setbeamertemplate{frame numbering}[fraction],
+}
+\pgfkeys{
+  /niser/outer/progressbar/.cd,
+    .is choice,
+    none/.code={%
+      \setbeamertemplate{headline}[plain]
+      \setbeamertemplate{frametitle}[plain]
+      \setbeamertemplate{footline}[plain]
+    },
+    head/.code={\pgfkeys{/niser/outer/progressbar=none}
+      \addtobeamertemplate{headline}{}{%
+        \usebeamertemplate*{progress bar in head/foot}
+      }
+    },
+    frametitle/.code={\pgfkeys{/niser/outer/progressbar=none}
+      \addtobeamertemplate{frametitle}{}{%
+        \usebeamertemplate*{progress bar in head/foot}
+      }
+    },
+    foot/.code={\pgfkeys{/niser/outer/progressbar=none}
+      \addtobeamertemplate{footline}{}{%
+        \usebeamertemplate*{progress bar in head/foot}%
+      }
+    },
+}
+\newcommand{\niser@outer@setdefaults}{
+  \pgfkeys{/niser/outer/.cd,
+    numbering=counter,
+    progressbar=none,
+  }
+}
+\setbeamertemplate{navigation symbols}{}
+\defbeamertemplate{frame footer}{none}{}
+\defbeamertemplate{frame footer}{custom}[1]{ #1 }
+\defbeamertemplate{frame numbering}{none}{}
+\defbeamertemplate{frame numbering}{counter}{\insertframenumber}
+\defbeamertemplate{frame numbering}{fraction}{
+  \insertframenumber/\inserttotalframenumber
+}
+\defbeamertemplate{headline}{plain}{}
+\defbeamertemplate{footline}{plain}{%
+  \begin{beamercolorbox}[wd=\textwidth, sep=3ex]{footline}%
+    \usebeamerfont{page number in head/foot}%
+    \usebeamertemplate*{frame footer}
+    \hfill%
+    \usebeamertemplate*{frame numbering}
+  \end{beamercolorbox}%
+}
+\newlength{\niser@frametitle@padding}
+\setlength{\niser@frametitle@padding}{2.2ex}
+\newcommand{\niser@frametitlestrut@start}{
+  \rule{0pt}{\niser@frametitle@padding +%
+    \totalheightof{%
+      \ifcsdef{niser@frametitleformat}{\niser@frametitleformat X}{X}%
+    }%
+  }%
+}
+\newcommand{\niser@frametitlestrut@end}{
+  \rule[-\niser@frametitle@padding]{0pt}{\niser@frametitle@padding}
+}
+\defbeamertemplate{frametitle}{plain}{%
+  \nointerlineskip%
+  \begin{beamercolorbox}[%
+      wd=\paperwidth,%
+      sep=0pt,%
+      leftskip=\niser@frametitle@padding,%
+      rightskip=\niser@frametitle@padding,%
+    ]{frametitle}%
+  \niser@frametitlestrut@start%
+  \insertframetitle%
+  \nolinebreak%
+  \niser@frametitlestrut@end%
+  \end{beamercolorbox}%
+}
+\setbeamertemplate{frametitle continuation}{%
+  \usebeamerfont{frametitle}
+  \romannumeral \insertcontinuationcount
+}
+\newlength{\niser@progressinheadfoot}
+\newlength{\niser@progressinheadfoot@linewidth}
+\setlength{\niser@progressinheadfoot@linewidth}{0.4pt}
+\setbeamertemplate{progress bar in head/foot}{
+  \nointerlineskip
+  \setlength{\niser@progressinheadfoot}{%
+    \paperwidth * \ratio{\insertframenumber pt}{\inserttotalframenumber pt}%
+  }%
+  \begin{beamercolorbox}[wd=\paperwidth]{progress bar in head/foot}
+    \tikzexternaldisable%
+    \begin{tikzpicture}
+      \fill[bg] (0,0) rectangle (\paperwidth, \niser@progressinheadfoot@linewidth);
+      \fill[fg] (0,0) rectangle (\niser@progressinheadfoot, \niser@progressinheadfoot@linewidth);
+    \end{tikzpicture}%
+    \tikzexternalenable%
+  \end{beamercolorbox}
+}
+\AtBeginDocument{%
+  \apptocmd{\appendix}{%
+    \pgfkeys{%
+      /niser/outer/.cd,
+      numbering=none,
+      progressbar=none}
+    }{}{}
+}
+\niser@outer@setdefaults
+\ProcessPgfPackageOptions{/niser/outer}
+\endinput
+%%
+%% End of file `beamerouterthemeniser.sty'.
