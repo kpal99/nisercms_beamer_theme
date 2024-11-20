@@ -1,0 +1,18 @@
+\documentclass{beamer}
+\makeatletter
+\def\input@path{{theme}}
+\makeatother
+\usetheme{niser}           % Use niser theme
+\usepackage{datetime}
+\title{A minimal example}
+\newdate{date}{01}{01}{2025} % set custom date
+\date{\displaydate{date}}
+\author{Kuldeep Kumar Pal}
+\institute{National Institute of Science Education and Research, An OCC of Homi Bhabha National Institute, Jatni, India}
+\begin{document}
+  \maketitle
+  \section{First Section}
+  \begin{frame}{First Frame}
+    Hello, world!
+  \end{frame}
+\end{document}
