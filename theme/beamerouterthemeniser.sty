@@ -167,20 +167,9 @@
 }
 \setbeamertemplate{subsubsection in toc}{%
   \leavevmode\leftskip=5.5em%
-  \llap{\textperiodcentered~} % Dot for sub-subsection
+  \llap{\textasteriskcentered~}  % asterisk for subsubsection
   \inserttocsubsubsection\par%
 }
-% Disable numbering
-\setbeamertemplate{numbered section in toc}{}
-\setbeamertemplate{numbered subsection in toc}{}
-\setbeamertemplate{numbered subsubsection in toc}{}
-\makeatother
-
-% Optional: Change the spacing and bullet style
-\setbeamertemplate{toc item}{\color{structure.fg}$\bullet$}
-\setbeamerfont{section in toc}{size=\large}
-\setbeamerfont{subsection in toc}{size=\normalsize}
-\setbeamerfont{subsubsection in toc}{size=\footnotesize}
 
 \niser@outer@setdefaults
 \ProcessPgfPackageOptions{/niser/outer}
