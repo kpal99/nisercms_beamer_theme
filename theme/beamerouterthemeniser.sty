@@ -153,6 +153,35 @@
    \setcounter{framenumber}{\value{finalframe}}
 }
 
+% Customize ToC for itemize style
+\makeatletter
+\setbeamertemplate{section in toc}{%
+  \leavevmode\leftskip=1.5em%
+  \llap{\textbullet~} % Bullet for section
+  \inserttocsection\par%
+}
+\setbeamertemplate{subsection in toc}{%
+  \leavevmode\leftskip=3.5em%
+  \llap{\textopenbullet~} % Open bullet for subsection
+  \inserttocsubsection\par%
+}
+\setbeamertemplate{subsubsection in toc}{%
+  \leavevmode\leftskip=5.5em%
+  \llap{\textperiodcentered~} % Dot for sub-subsection
+  \inserttocsubsubsection\par%
+}
+% Disable numbering
+\setbeamertemplate{numbered section in toc}{}
+\setbeamertemplate{numbered subsection in toc}{}
+\setbeamertemplate{numbered subsubsection in toc}{}
+\makeatother
+
+% Optional: Change the spacing and bullet style
+\setbeamertemplate{toc item}{\color{structure.fg}$\bullet$}
+\setbeamerfont{section in toc}{size=\large}
+\setbeamerfont{subsection in toc}{size=\normalsize}
+\setbeamerfont{subsubsection in toc}{size=\footnotesize}
+
 \niser@outer@setdefaults
 \ProcessPgfPackageOptions{/niser/outer}
 \endinput
