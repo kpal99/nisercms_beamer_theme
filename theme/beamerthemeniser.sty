@@ -18,7 +18,7 @@
 %% ---------------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemeniser}
-  [2017/01/23 v1.2 Metropolis Beamer theme]
+  [2017/01/23 v1.2 Niser Beamer theme]
 \RequirePackage{etoolbox}
 \RequirePackage{pgfopts}
 \pgfkeys{/niser/.cd,
@@ -92,7 +92,7 @@
 \def\niser@plaintitleformat#1{#1}
 \newcommand{\plain}[2][]{%
   \PackageWarning{beamerthemeniser}{%
-    The syntax `\plain' may be deprecated in a future version of Metropolis.
+    The syntax `\plain' may be deprecated in a future version of Niser.
     Please use a frame with [standout] instead.
   }
   \begin{frame}[standout]{#1}
