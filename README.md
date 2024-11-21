@@ -1,4 +1,4 @@
-# NISER Theme
+# NISER-CMS Theme
 
 [Output compiled file](demo/main.pdf) is accessible here.  
 Adapted from [Metropolis](https://github.com/matze/mtheme)  
