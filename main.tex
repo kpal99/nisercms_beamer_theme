@@ -3,10 +3,11 @@
 \def\input@path{{theme}}
 \makeatother
 % using niser theme
-\usetheme[numbering=fraction, progressbar=frametitle]{niser}
+\usetheme[numbering=fraction, progressbar=frametitle, block=fill]{niser}
 %%% theme options are
 % numbering: none, counter, fraction
 % progressbar: none, head, frametitle, foot
+% block: fill, transparent. transparent is default beamer option
 %%%
 \usepackage{datetime}
 
@@ -31,7 +32,15 @@
   \end{frame}
 
   \begin{frame}{Second Frame}
-    Hello, everyone!
+    \begin{block}{Title of the Block}
+      Content of the block.
+    \end{block}
+    \begin{alertblock}{Title of the Alert Block}
+      Content of the alert block.
+    \end{alertblock}
+    \begin{exampleblock}{Title of the Example Block}
+      Content of the example block.
+    \end{exampleblock}
   \end{frame}
 
   \subsection{First Subsection}
